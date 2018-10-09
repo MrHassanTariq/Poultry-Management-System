@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PoulltaryFarm.Models.Report>
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Reports</h2>
+
+@if (ViewBag.orders != null)
+{
+
+<form method="post">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-2">
+                <label for="OrderID">Select Order</label>
+            </div>
+            <div class="col-md-10">
+                <select class="form-control" name="OrderID">
+                    @foreach(var item in ViewBag.orders)
+                    {
+                        <option value=@item.OrderID >@item.OrderNumber</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn">Show Reports</button>
+        </div>
+    </div>
+
+</form>
+
+}
+
+@if (ViewBag.orders == null)
+{
+    <table>
+        @if(ViewBag.sold != null)
+        {
+
+            foreach (var item in ViewBag.sold)
+            {
+                <tr>
+                    <td>
+                        @item
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <p>Current Order was not sold to any Retailer</p>
+        }
+        
+            @foreach (var item in ViewBag.bought)
+            {
+                <tr>
+                    <td>
+                        @item
+                    </td>
+                </tr>
+            }
+    </table>
+}
